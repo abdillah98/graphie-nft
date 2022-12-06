@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useCallback, useContext} from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import {useDropzone} from 'react-dropzone';
 import { create as ipfsHttpClient } from 'ipfs-http-client';
 import { AppContext } from "../context";
 import {ethers} from 'ethers';
@@ -33,24 +32,6 @@ export default function Create() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [jsonFile, setJsonFile] = useState('')
 	const [isError, setIsError] = useState(false)
-
-	const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-    const file = acceptedFiles[0]
-    const filenameExt = file.name;
-    const filename = file.name.split('.').slice(0, -1).join('.');
-    const createUrl = URL.createObjectURL(file)
-    const myFile = new File([createUrl], filenameExt);
-    setImage(myFile)
-    setImageUrl(createUrl)
-    setForm({...form, name: filename})
-  }, [])
-
-  const {
-  	getRootProps, 
-  	getInputProps, 
-  	isDragActive
-  } = useDropzone({onDrop})
 
   const _postIdToDb = async (id, price) => {
   	var raw = JSON.stringify({id, price});
@@ -144,18 +125,6 @@ export default function Create() {
 			  	      id="image" 
 			  	      onChange={(e) => setImage(e.target.files[0])}
 			  	    />
-			  	    {/*<div {...getRootProps()}>
-	  	          <input {...getInputProps()} />
-	              <div className="dropzone-area">
-	              	{
-	              		imageUrl ?
-		                <div className="image-drop">
-		                	<Image layout="fill" src={imageUrl} alt="image-drop" />
-		                </div> :
-	                	<span>Drag & drop some files here, or click to select files</span>
-	              	}
-	              </div> 
-	  	        </div>*/}
 			  	  </div>
 			  	  <div className="mb-3">
 				  	  <div className="row">
@@ -202,7 +171,7 @@ export default function Create() {
 			  	    >
 			  	      Description <span className="text-danger">*</span>
 			  	    </label>
-			  	    <div className="form-text mb-2">The description will be included on the item's detail page underneath its image. </div>
+			  	    <div className="form-text mb-2">The description will be included on the items detail page underneath its image. </div>
 			  	    <textarea 
 			  	      className="form-control" 
 			  	      id="description" 
@@ -218,7 +187,10 @@ export default function Create() {
 			  	    onClick={_uploadMetadata}
 			  	    disabled={isLoading}
 			  	  >
-			  	    {isLoading ? 'Loading...' : 'Create'}
+			  	    {isLoading ? 
+			  	    <span>Loading...</span> :
+			  	    <span>Create</span>
+			  	  	}
 			  	  </button>
 			  	</form>
 

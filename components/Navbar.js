@@ -25,7 +25,7 @@ export default function Navbar({searchValue, onChangeSearch}) {
 	    }
 	  }
 	  _getAcccount()
-	}, [])
+	}, [setAccountAddress])
 
 	// Deteksi jika terjadi pergantian akun di metamask
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Navbar({searchValue, onChangeSearch}) {
     	console.log('Please Install Metamask')
     }
     
-  }, [])
+  }, [setAccountAddress])
 
 	//Aksi koneksi ke metamask
 	const _connectToWallet = async () => {

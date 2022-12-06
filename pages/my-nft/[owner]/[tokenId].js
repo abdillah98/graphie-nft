@@ -55,7 +55,7 @@ export default function MyNFT({owner, tokenId}) {
 
 	  fetchMyNFTs()
 
-	}, [])
+	}, [tokenId])
 
 	const _resellToken = async (item) => {
 	  console.log(item)

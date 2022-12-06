@@ -55,7 +55,7 @@ export default function Details({contract, tokenId}) {
 
 	  _fetchMarketItems()
 
-	}, [])
+	}, [tokenId])
 
 	const _createMarketSale = async (item) => {
 	  console.log(item)
