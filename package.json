@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "server": "json-server --watch database/db.json --port 3004"
+    "lint": "next lint"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
