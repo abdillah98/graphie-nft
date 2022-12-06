@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'graphieipfs.infura-ipfs.io'
-    ]
+    domains: ['graphieipfs.infura-ipfs.io']
   }
 }
 
 module.exports = nextConfig
+
