@@ -5,8 +5,7 @@ const nextConfig = {
     domains: [
       'graphieipfs.infura-ipfs.io'
     ]
-  },
-  optimizeFonts: false
+  }
 }
 
 module.exports = nextConfig
