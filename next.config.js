@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'graphieipfs.infura-ipfs.io'
+        hostname: '**'
       }
     ]
   }
