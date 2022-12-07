@@ -95,17 +95,17 @@ export default function Home() {
     <div className="container">
       <div className="row mb-5">
         <div className="col-lg-12">
-          <div className="card-banner p-5">
+          <div className="card-banner p-3 p-md-5">
             <div className="row justify-content-between align-items-center">
               <div className="col-lg-6 col-md-6 order-1 order-md-0">
-                  <h1 className="text-white text-hero mb-4">Beautiful NFTs for everyone</h1>
-                  <p className="lead">NFT Market is a multi-chain marketplace that aggregates every NFT into a single platform.</p>
-                  <div className="d-flex">
-                    <button type="button" className="btn btn-gradient px-5 py-3 me-2">Explore</button>
-                    <Link href="/create">
-                      <button type="button" className="btn btn-dark px-5 py-3 fw-bolder">Sell</button>
-                    </Link>
-                  </div>
+                <h1 className="text-white text-hero mb-4">Beautiful NFTs for everyone</h1>
+                <p className="lead">NFT Market is a multi-chain marketplace that aggregates every NFT into a single platform.</p>
+                <div className="d-flex">
+                  <button type="button" className="btn btn-gradient px-md-5 py-3 me-2">Explore</button>
+                  <Link href="/create">
+                    <button type="button" className="btn btn-dark px-md-5 py-3 fw-bolder">Sell</button>
+                  </Link>
+                </div>
               </div>
               <div className="col-lg-4 col-md-6 order-0 order-md-1 mb-5 mb-md-0">
                 <div id="carouselExampleIndicators" className="carousel slide">
