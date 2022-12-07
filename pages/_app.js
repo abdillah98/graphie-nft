@@ -19,3 +19,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
+
+
+// Json server live
+// npx json-server --watch database/db.json --port 3004

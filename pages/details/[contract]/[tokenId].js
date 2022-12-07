@@ -7,6 +7,10 @@ import nftContractAddress from "../../../contracts/nft-contract-address";
 import MarketV2 from "../../../contracts/NFTMarketV2.json";
 import marketContractAddressV2 from "../../../contracts/nftmarketv2-contract-address";
 import { AppContext } from "../../../context";
+import { SingleItemLoading } from "../../../components";
+
+const RPC_URL = process.env.NEXT_PUBLIC_JSON_RPC
+const RPC_URL_KEY = process.env.NEXT_PUBLIC_JSON_RPC_KEY
 
 export default function Details({contract, tokenId}) {
 	const router = useRouter();
@@ -19,8 +23,8 @@ export default function Details({contract, tokenId}) {
 
 	useEffect(() => {
 	  const _fetchMarketItems = async () => {
-	    const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
-	    const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, _provider.getSigner(0));
+	    const provider = new ethers.providers.JsonRpcProvider(`${RPC_URL}/${RPC_URL_KEY}`);
+	    const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, provider);
 	    
 	    //return an array of unsold market items
 	    try {
@@ -43,7 +47,7 @@ export default function Details({contract, tokenId}) {
   		  }));
 
   		  const nft = newItems.find(item => item.tokenId == tokenId )
-  		  const _chain = await _provider.getNetwork();
+  		  const _chain = await provider.getNetwork();
   		  setItem(nft)
   		  setChain(_chain)
 	    }
@@ -147,7 +151,8 @@ export default function Details({contract, tokenId}) {
 									</div>
 								</div>
 							</div>
-						</div> : null
+						</div> :
+						<SingleItemLoading />
 					}
 				</div>
 			</div>

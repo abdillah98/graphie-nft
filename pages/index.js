@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 // import Logo from '../images/logo.svg';
 import EthLogo from '../images/eth-logo.png';
@@ -11,9 +12,11 @@ import MarketV2 from "../contracts/NFTMarketV2.json";
 import marketContractAddressV2 from "../contracts/nftmarketv2-contract-address";
 import nftContractAddress from "../contracts/nft-contract-address";
 import Web3Modal from "web3modal";
-import { Navbar } from '../components'
+import { Navbar, ItemLoading } from '../components'
 import { AppContext } from "../context";
 
+const RPC_URL = process.env.NEXT_PUBLIC_JSON_RPC
+const RPC_URL_KEY = process.env.NEXT_PUBLIC_JSON_RPC_KEY
 
 export default function Home() {
   const value = useContext(AppContext);
@@ -31,7 +34,7 @@ export default function Home() {
 
   const _fetchMarketItems = async () => {
     // const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
-    const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/f33de16fb7fb4c5fa4c4ade748539972");
+    const provider = new ethers.providers.JsonRpcProvider(`${RPC_URL}/${RPC_URL_KEY}`);
     const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, provider);
     
     //return an array of unsold market items
@@ -53,7 +56,7 @@ export default function Home() {
         }
         return item;
       }));
-      // console.log(newItems)
+      console.log(newItems)
       setItems(newItems)
       setIsLoading(false)
     }
@@ -145,14 +148,7 @@ export default function Home() {
             {
               isLoading ?
               itemsLoading.map((item, index) =>
-                <div className="col-md-6 col-lg-3 mb-4" key={index}>
-                  <div className="card-item">
-                    <div className="card-img mb-3"></div>
-                    <div className="text-loading mb-3 w-50"></div>
-                    <div className="text-loading mb-2"></div>
-                    <div className="text-loading w-25"></div>
-                  </div>
-                </div>
+                <ItemLoading key={index} />
               ) :
               items.map((item, index) => 
                 <div className="col-md-6 col-lg-3 mb-4" key={index}>

@@ -1,0 +1,58 @@
+{
+	"accounts": [
+		{
+			"id": 1,
+			"account_address": "0xf251efdfb0d3b196bf04e30ef88574eac2cbb3e5",
+			"account_name": "GraphieNFTDev1",
+			"account_picture": "https://graphieipfs.infura-ipfs.io/ipfs/QmdDY8Bv6oSsXUgCdLj1VRRQfuRyPCWLsPh8DyBUkpLuny",
+			"account_banner": "https://img.freepik.com/premium-vector/painted-background-multicoloured-palette_23-2148427592.jpg?w=2000"
+		},
+		{
+			"id": 2,
+			"account_address": "0x91fb0f0f6651bcc30cae84f43ed30b0e3ed4a04f",
+			"account_name": null,
+			"account_picture": null,
+			"account_banner": null
+		},
+		{
+			"id": 3,
+			"account_address": "0x2dd23ca898d15f1325201d8e554e2135f8e4e066",
+			"account_name": null,
+			"account_picture": null,
+			"account_banner": null
+		},
+		{
+			"id": 4,
+			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
+			"account_name": null,
+			"account_picture": null
+		},
+		{
+			"id": 5,
+			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
+			"account_name": null,
+			"account_picture": null
+		},
+		{
+			"id": 6,
+			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
+			"account_name": null,
+			"account_picture": null
+		},
+		{
+			"id": 7,
+			"account_name": null,
+			"account_picture": null
+		},
+		{
+			"id": 8,
+			"account_name": null,
+			"account_picture": null
+		},
+		{
+			"id": 9,
+			"account_name": null,
+			"account_picture": null
+		}
+	]
+}

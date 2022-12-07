@@ -8,14 +8,16 @@ import NFT from "../contracts/NFT.json";
 import nftContractAddress from "../contracts/nft-contract-address";
 import MarketV2 from "../contracts/NFTMarketV2.json";
 import marketContractAddressV2 from "../contracts/nftmarketv2-contract-address";
+import Web3Modal from "web3modal";
 
-const projectId = '2IAVP1C1Q7Xvu3fJrtGbYSwRg7A';
-const projectSecretKey = 'b59320d193e887f32062d77acdffa307';
+const env = process.env.NODE_ENV
+const projectId = process.env.NEXT_PUBLIC_INFURA_PROJECT_ID;
+const projectSecretKey = process.env.NEXT_PUBLIC_INFURA_PROJECT_SECRET_KEY;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
-const fileURI = 'https://graphieipfs.infura-ipfs.io/ipfs';
+const fileURI = process.env.NEXT_PUBLIC_INFURA_IPFS_FILE_URL;
 
 const client = ipfsHttpClient({
-  url: "https://ipfs.infura.io:5001/api/v0",
+  url: process.env.NEXT_PUBLIC_INFURA_API_URL,
   headers: {
     authorization,
   },
@@ -65,6 +67,7 @@ export default function Create() {
       setIsLoading(true)
 
       const uploadImage = await client.add(image)
+      
       // file saved in the url path below
       const imageUrl = `${fileURI}/${uploadImage.path}`;
       const data = JSON.stringify({
@@ -73,7 +76,12 @@ export default function Create() {
 
       const uploadJson = await client.add(data);
       const jsonUrl = `${fileURI}/${uploadJson.path}`;
-      await _postIdToDb(uploadJson.path, price)
+
+      // Save id path to local db
+      if (env == 'development') {
+      	await _postIdToDb(uploadJson.path, price)
+	    }
+
       await _createMarketItem(jsonUrl)
       setJsonFile(jsonUrl)
       setIsLoading(false)
@@ -85,8 +93,13 @@ export default function Create() {
   }
 
   const _createMarketItem = async (tokenURI) => {
-  	const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
-  	const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, _provider.getSigner(0));
+  	// const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
+  	const web3Modal = new Web3Modal();
+  	const connection = await web3Modal.connect();
+  	const provider = new ethers.providers.Web3Provider(connection);
+
+  	const signer = provider.getSigner();
+  	const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, signer);
 
   	try {
   		//get a reference to the price entered in the form 

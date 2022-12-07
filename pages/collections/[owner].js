@@ -6,6 +6,8 @@ import NFT from "../../contracts/NFT.json";
 import nftContractAddress from "../../contracts/nft-contract-address";
 import MarketV2 from "../../contracts/NFTMarketV2.json";
 import marketContractAddressV2 from "../../contracts/nftmarketv2-contract-address";
+import { ItemLoading } from '../../components';
+import { getAccount } from '../../helpers';
 
 export default function Collections({owner}) {
 	
@@ -15,6 +17,7 @@ export default function Collections({owner}) {
 	const [itemsListed, setItemsListed] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [tabs, setTabs] = useState(0)
+	const [account, setAccount] = useState(null)
 
 	useEffect(() => {
 		// _fetchMarketItems()
@@ -22,9 +25,19 @@ export default function Collections({owner}) {
 	  _fetchItemsListed()
 	}, [])
 
+	useEffect(() => {
+		const _getAccount = async () => {
+			const result = await getAccount(owner)
+			console.log(result)
+			setAccount(result)
+		}
+		_getAccount()
+	}, [owner])
+
 	const _fetchMarketItems = async () => {
-    const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
-    const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, _provider.getSigner(0));
+    // const _provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider();
+    const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/f33de16fb7fb4c5fa4c4ade748539972");
+	  const marketContract = new ethers.Contract(marketContractAddressV2.contractAddress, MarketV2.abi, _provider.getSigner(0));
 
     try {
     	const data = await marketContract.fetchMarketItems();
@@ -120,6 +133,43 @@ export default function Collections({owner}) {
 
 	return (
 		<div className="container">
+			<div className="row mb-5">
+			  <div className="col-lg-12">
+				  <div className="card-profile">
+					  <div className="card-profile-banner">
+					  	{
+					  		account &&
+					  		account.account_banner ?
+					  		<Image 
+					  			src={account?.account_banner} 
+					  			layout="fill" 
+					  			alt={account?.account_name} 
+					  		/> : null
+					  	}
+					  </div>
+					  <div className="card-profile-info">
+					  	<div className="card-profile-picture-border mx-auto mb-3">
+						  	<div className="card-profile-picture mx-auto mb-3">
+						  		{
+						  			account &&
+						  			account.account_banner ?
+						  			<Image 
+						  				src={account?.account_picture} 
+						  				layout="fill" 
+						  				alt={account?.account_name} 
+						  			/> : null
+						  		}
+						  	</div>
+					  	</div>
+					  	{
+					  		account &&
+					  		account.account_banner ?
+					  		<h5 className="fw-bolder text-white text-center">{account?.account_name}</h5> : null
+					  	}
+					  </div>
+				  </div>
+			  </div>
+			</div>
 			<div className="row mb-4">
 			  <div className="col-lg-12">
 			  	<button type="button" className={`btn ${tabs === 0 ? 'btn-gradient' : 'btn-dark bg-blur'} py-2 me-2 rounded-pill`} onClick={() => setTabs(0)}>Item Created & Resell</button>
@@ -180,14 +230,7 @@ export default function Collections({owner}) {
 			    	{
 			    		isLoading ?
 			    		itemsLoading.map((item, index) =>
-				    		<div className="col-md-6 col-lg-3 mb-4" key={index}>
-				    			<div className="card-item">
-				    			  <div className="card-img mb-3"></div>
-				    			  <div className="text-loading mb-3 w-50"></div>
-				    			  <div className="text-loading mb-2"></div>
-				    			  <div className="text-loading w-25"></div>
-				    			</div>
-				    		</div>
+				    		<ItemLoading key={index}/>
 			    		) :
               items.length > 0 ? 
               items.map((item, index) => 
@@ -224,14 +267,7 @@ export default function Collections({owner}) {
  			    	{
  			    		isLoading ?
  			    		itemsLoading.map((item, index) =>
- 				    		<div className="col-md-6 col-lg-3 mb-4" key={index}>
- 				    			<div className="card-item">
- 				    			  <div className="card-img mb-3"></div>
- 				    			  <div className="text-loading mb-3 w-50"></div>
- 				    			  <div className="text-loading mb-2"></div>
- 				    			  <div className="text-loading w-25"></div>
- 				    			</div>
- 				    		</div>
+ 				    		<ItemLoading key={index}/>
  			    		) :
                itemsListed.length > 0 ?
                itemsListed.map((item, index) => 
