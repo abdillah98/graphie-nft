@@ -2,57 +2,27 @@
 	"accounts": [
 		{
 			"id": 1,
-			"account_address": "0xf251efdfb0d3b196bf04e30ef88574eac2cbb3e5",
 			"account_name": "GraphieNFTDev1",
-			"account_picture": "https://graphieipfs.infura-ipfs.io/ipfs/QmdDY8Bv6oSsXUgCdLj1VRRQfuRyPCWLsPh8DyBUkpLuny",
-			"account_banner": "https://img.freepik.com/premium-vector/painted-background-multicoloured-palette_23-2148427592.jpg?w=2000"
+			"account_address": "0xf251efdfb0d3b196bf04e30ef88574eac2cbb3e5",
+			"account_picture": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Fa935d5f7-30f9-45d3-8822-228ffa8edc46?alt=media&token=fe452ccd-2aba-41af-bc0e-0947b478896d",
+			"account_banner": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Ff4f52c2b-3053-44ab-8085-ec5367ba332b?alt=media&token=807daf61-3708-438a-854c-95a11ae11678",
+			"account_description": "Hello, Welcome to my nft marketplace."
 		},
 		{
 			"id": 2,
+			"account_name": "TestCoint#1",
 			"account_address": "0x91fb0f0f6651bcc30cae84f43ed30b0e3ed4a04f",
-			"account_name": null,
-			"account_picture": null,
-			"account_banner": null
+			"account_picture": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Fd48959fa-689a-433c-b177-2016c718ad22?alt=media&token=89ecb536-1977-43a4-a1ec-d2c18e75c3ac",
+			"account_banner": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Fc4dbcf01-12c3-4554-b06d-85be3dc6166c?alt=media&token=8497e6b7-cb71-46ef-aa02-412731c89c17",
+			"account_description": "Hello, Welcome to my nft marketplace."
 		},
 		{
 			"id": 3,
+			"account_name": "GraphieNFTDev3",
 			"account_address": "0x2dd23ca898d15f1325201d8e554e2135f8e4e066",
-			"account_name": null,
-			"account_picture": null,
-			"account_banner": null
-		},
-		{
-			"id": 4,
-			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
-			"account_name": null,
-			"account_picture": null
-		},
-		{
-			"id": 5,
-			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
-			"account_name": null,
-			"account_picture": null
-		},
-		{
-			"id": 6,
-			"account_address": "0xac70abf82d7784238cf5fff90856911e87d4c3a9",
-			"account_name": null,
-			"account_picture": null
-		},
-		{
-			"id": 7,
-			"account_name": null,
-			"account_picture": null
-		},
-		{
-			"id": 8,
-			"account_name": null,
-			"account_picture": null
-		},
-		{
-			"id": 9,
-			"account_name": null,
-			"account_picture": null
+			"account_picture": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Fc10569ea-32f9-44e9-911d-8ac4780ea98f?alt=media&token=ce625a03-6403-495f-b901-1ac7761562fe",
+			"account_banner": "https://firebasestorage.googleapis.com/v0/b/graphie-nft-image.appspot.com/o/images%2Fb8e2ece3-61df-40f8-89df-31710003716f?alt=media&token=b448a40d-6f12-47f6-b266-e9a7b4422944",
+			"account_description": "Hello, Welcome to my nft marketplace."
 		}
 	]
 }

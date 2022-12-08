@@ -26,7 +26,7 @@ export default function Navbar() {
 	    }
 	  }
 	  _getAcccount()
-	}, [setAccountAddress])
+	}, [])
 
 	// Deteksi jika terjadi pergantian akun di metamask
   useEffect(() => {
@@ -34,9 +34,8 @@ export default function Navbar() {
   		console.log('_detectChange')
 	  	if(window.ethereum) {
 		    window.ethereum.on('accountsChanged', async function ([account]) {
-		    	await createAccounts(account)
 		      setAccountAddress(account ? account : '')
-		    	router.push(`/`)
+		      router.push('/')
 		    });
 		  }
 		  else {
@@ -44,17 +43,27 @@ export default function Navbar() {
 	    }
   	}
     _detectChange()
-  }, [setAccountAddress])
+  }, [])
 
   useEffect(() => {
   	setIsShow(false)
   }, [router.pathname])
 
+  useEffect(() => {
+  	const _createAccount = async () => {
+  		if(accountAddress) {
+	  		await createAccounts(accountAddress)
+  		}
+  	}
+
+  	_createAccount()
+  }, [accountAddress])
+
 	//Aksi koneksi ke metamask
 	const _connectToWallet = async () => {
 	  if (window.ethereum) {
+	  	console.log('Aksi koneksi ke metamask')
 	    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-	    await createAccounts(account)
 	    setAccountAddress(account)
 	  }
 	  else {
@@ -95,9 +104,14 @@ export default function Navbar() {
             </li>
             {
             	accountAddress &&
-            	<li className="nav-item">
-            	  <Link className={`nav-link ${router.patname === '/collections' ? 'active fw-bolder' : ''}`} aria-current="page" href={`/collections/${accountAddress}`}>MyNFT</Link>
-            	</li>
+            	<>
+	            	<li className="nav-item">
+	            	  <Link className={`nav-link ${router.patname === '/collections' ? 'active fw-bolder' : ''}`} aria-current="page" href={`/collections/${accountAddress}`}>MyNFT</Link>
+	            	</li>
+	            	<li className="nav-item">
+	            	  <Link className={`nav-link ${router.patname === '/profile' ? 'active fw-bolder' : ''}`} aria-current="page" href={`/profile/${accountAddress}`}>Profile</Link>
+	            	</li>
+            	</>
             }
 					</ul>
 					<button 

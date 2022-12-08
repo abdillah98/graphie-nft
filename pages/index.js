@@ -108,32 +108,36 @@ export default function Home() {
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 order-0 order-md-1 mb-5 mb-md-0">
-                <div id="carouselExampleIndicators" className="carousel slide">
-                  <div className="carousel-indicators">
-                    {
-                      items.map((item, index) => 
-                        index < 3 &&
-                        <button 
-                          key={index}
-                          type="button" 
-                          data-bs-target="#carouselExampleIndicators" 
-                          className={indicator === index ? 'active' : ''} 
-                          onClick={() => setIndicator(index)}
-                        />
-                      )
-                    }
+                {
+                  isLoading ?
+                  <div className="single-image bg-blur"/> : 
+                  <div id="carouselExampleIndicators" className="carousel slide">
+                    <div className="carousel-indicators">
+                      {
+                        items.map((item, index) => 
+                          index < 3 &&
+                          <button 
+                            key={index}
+                            type="button" 
+                            data-bs-target="#carouselExampleIndicators" 
+                            className={indicator === index ? 'active' : ''} 
+                            onClick={() => setIndicator(index)}
+                          />
+                        )
+                      }
+                    </div>
+                    <div className="carousel-inner">
+                      {
+                        items.map((item, index) => 
+                          index < 3 &&
+                          <div className={`carousel-item ${indicator === index ? 'active' : ''}`} key={index}>
+                            <Image layout="fill" src={item.image} className="d-block w-100" alt="..." />
+                          </div>
+                        )
+                      }
+                    </div>
                   </div>
-                  <div className="carousel-inner">
-                    {
-                      items.map((item, index) => 
-                        index < 3 &&
-                        <div className={`carousel-item ${indicator === index ? 'active' : ''}`} key={index}>
-                          <Image layout="fill" src={item.image} className="d-block w-100" alt="..." />
-                        </div>
-                      )
-                    }
-                  </div>
-                </div>
+                }
               </div>
             </div>
           </div>

@@ -163,8 +163,13 @@ export default function Collections({owner}) {
 					  	</div>
 					  	{
 					  		account &&
-					  		account.account_banner ?
+					  		account.account_name ?
 					  		<h5 className="fw-bolder text-white text-center">{account?.account_name}</h5> : null
+					  	}
+					  	{
+					  		account &&
+					  		account.account_description ?
+					  		<p className="text-center">{account?.account_description}</p> : null
 					  	}
 					  </div>
 				  </div>

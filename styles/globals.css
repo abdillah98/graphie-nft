@@ -265,6 +265,13 @@ a {
 .btn-connect {
   width: 100%;
 }
+.border-dashed {
+  border: 3px solid #fff;
+  border-style: dashed;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
